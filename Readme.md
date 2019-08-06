@@ -1,7 +1,7 @@
 # Личный проект «Менеджер задач» [![Build status][travis-image]][travis-url]
 
 * Студент: [Stepan Avdevich](https://up.htmlacademy.ru/ecmascript/9/user/570493).
-* Наставник: `Неизвестно`.
+* Наставник: Александр Тимоновский.
 
 ---
 
