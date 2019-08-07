@@ -3,7 +3,7 @@
  const mainControlBlock = document.querySelector('.main__control');
  const mainMainBlock = document.querySelector('.main');
 
- const createBlockMenu = function() {
+ const createBlockMenu = () => {
    return `
   <section class="control__btn-wrap">
           <input
@@ -35,7 +35,7 @@
         </section>`;
  };
 
- const createBlockSearch = function() {
+ const createBlockSearch = () => {
    return `
   <section class="main__search search container">
         <input
@@ -48,7 +48,8 @@
       </section>`;
  };
 
- const createBlockBoard = function () {
+// soberajem razmetku v blok 'board'
+ const createBlockBoard = () => {
  return `
        <section class="board container">
        ${createBlockFilters()}
@@ -58,7 +59,7 @@
 `;
  };
 
- const createBlockFilters = function() {
+ const createBlockFilters = () => {
    return `
   <section class="main__filter filter container">
         <input
@@ -136,7 +137,8 @@
         </div>`;
  };
 
- const createBlockCard = function(repeat = 1) {
+// sozdajem bloki kartochek
+ const createBlockCard = (repeat = 1) => {
    let cardsAmount = '';
    for (let i = 0; i < repeat; i++) {
      cardsAmount += `
@@ -196,7 +198,8 @@
    return cardsAmount;
  };
 
- const createBlockCardControl = function() {
+// instrumenty kartochki
+ const createBlockCardControl = () => {
    return `
                   <button type="button" class="card__btn card__btn--edit">
                     edit
@@ -213,7 +216,8 @@
 `;
  };
 
- const createBlockLoadMore = function () {
+//sozdajem knopku zagruzki dopolnitelnyh kartochek
+ const createBlockLoadMore = () => {
   return `
     <button class="load-more" type="button">load more</button>
   `;
