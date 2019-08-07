@@ -1,10 +1,10 @@
-'use strict'
+'use strict';
 
- const mainControlBlock = document.querySelector('.main__control');
- const mainMainBlock = document.querySelector('.main');
+const mainControlBlock = document.querySelector(`.main__control`);
+const mainMainBlock = document.querySelector(`.main`);
 
- const createBlockMenu = () => {
-   return `
+const createBlockMenu = () => {
+  return `
   <section class="control__btn-wrap">
           <input
             type="radio"
@@ -33,10 +33,10 @@
             >STATISTICS</label
           >
         </section>`;
- };
+};
 
- const createBlockSearch = () => {
-   return `
+const createBlockSearch = () => {
+  return `
   <section class="main__search search container">
         <input
           type="text"
@@ -46,21 +46,21 @@
         />
         <label class="visually-hidden" for="search__input">Search</label>
       </section>`;
- };
+};
 
 // soberajem razmetku v blok 'board'
- const createBlockBoard = () => {
- return `
+const createBlockBoard = () => {
+  return `
        <section class="board container">
        ${createBlockFilters()}
        ${createBlockCard(3)}
        ${createBlockLoadMore()}
        </section>
 `;
- };
+};
 
- const createBlockFilters = () => {
-   return `
+const createBlockFilters = () => {
+  return `
   <section class="main__filter filter container">
         <input
           type="radio"
@@ -135,13 +135,13 @@
           <a href="#" class="board__filter">SORT BY DATE up</a>
           <a href="#" class="board__filter">SORT BY DATE down</a>
         </div>`;
- };
+};
 
 // sozdajem bloki kartochek
- const createBlockCard = (repeat = 1) => {
-   let cardsAmount = '';
-   for (let i = 0; i < repeat; i++) {
-     cardsAmount += `
+const createBlockCard = (repeat = 1) => {
+  let cardsAmount = ``;
+  for (let i = 0; i < repeat; i++) {
+    cardsAmount += `
 <article class="card card--black">
             <div class="card__form">
               <div class="card__inner">
@@ -194,13 +194,13 @@
             </div>
           </article>
   `;
-   };
-   return cardsAmount;
- };
+  }
+  return cardsAmount;
+};
 
 // instrumenty kartochki
- const createBlockCardControl = () => {
-   return `
+const createBlockCardControl = () => {
+  return `
                   <button type="button" class="card__btn card__btn--edit">
                     edit
                   </button>
@@ -214,17 +214,17 @@
                     favorites
                   </button>
 `;
- };
+};
 
-//sozdajem knopku zagruzki dopolnitelnyh kartochek
- const createBlockLoadMore = () => {
+// sozdajem knopku zagruzki dopolnitelnyh kartochek
+const createBlockLoadMore = () => {
   return `
     <button class="load-more" type="button">load more</button>
   `;
- };
+};
 
 
- mainControlBlock.insertAdjacentHTML(`beforeend`, createBlockMenu());
- mainMainBlock.insertAdjacentHTML(`beforeend`, createBlockSearch());
- mainMainBlock.insertAdjacentHTML(`beforeend`, createBlockBoard());
+mainControlBlock.insertAdjacentHTML(`beforeend`, createBlockMenu());
+mainMainBlock.insertAdjacentHTML(`beforeend`, createBlockSearch());
+mainMainBlock.insertAdjacentHTML(`beforeend`, createBlockBoard());
 
