@@ -13,3 +13,7 @@ node_modules/
 
 # Папка с собранными файлами проекта
 build/
+
+# faily sborki
+public/*.js
+public/*.map
