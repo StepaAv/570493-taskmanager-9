@@ -11,7 +11,7 @@ const mainMainBlock = document.querySelector(`.main`);
 
 
 const renderBlocks = (container, template, place) => {
-  container.insertAdjacentHTML(place, template)
+  container.insertAdjacentHTML(place, template);
 };
 
 renderBlocks(mainControlBlock, createBlockMenu(), `beforeend`);
