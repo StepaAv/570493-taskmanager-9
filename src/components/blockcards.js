@@ -43,7 +43,7 @@ export const createBlockCard = (description, dueDate, tags, color = `black`) => 
             </div>
           </article>
   `;
-  };
+};
 
 // data.js
 

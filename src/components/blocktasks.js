@@ -2,7 +2,7 @@ import {createBlockFilters} from './blockfilters.js';
 import {createBlockCard} from './blockcards.js';
 import {createBlockLoadMore} from './blockloadmore.js';
 
-const CARD_QUANTITY = 3;
+// const CARD_QUANTITY = 3;
 
 
 // soberajem razmetku v blok 'board'
@@ -17,8 +17,6 @@ export const createBlockTasks = () => {
         ${createBlockLoadMore()}
        </section>`;
 };
-
-
 
 
 const task = {
@@ -37,7 +35,7 @@ const task = {
     `cinema`,
   ]),
 
-    color: [
+  color: [
     `black`,
     `yellow`,
     `blue`,
