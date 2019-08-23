@@ -1,7 +1,7 @@
 import {createBlockCardControl} from './blockcardcontrol.js';
 
 
-export const createBlockCard = (description, dueDate, tags, color = `black`) => {
+export const createBlockCard = (description = `lol`, dueDate, tags, color = `black`) => {
   return `
 <article class="card card--${color}">
             <div class="card__form">

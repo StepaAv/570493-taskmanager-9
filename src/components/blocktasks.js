@@ -12,14 +12,14 @@ export const createBlockTasks = () => {
        <section class="board container">
         ${createBlockFilters()}
        <div class="board__tasks">
-        ${createBlockCard(task.description, task.dueDate, task.tags)}
+        ${myFunc()}
        </div>
         ${createBlockLoadMore()}
        </section>`;
 };
 
 
-const task = {
+const task = () => ({
   description: [
     `Изучить теорию`,
     `Сделать домашку`,
@@ -42,4 +42,14 @@ const task = {
     `green`,
     `pink`,
   ][Math.floor(Math.random() * 5)],
+});
+
+const ololo = task();
+
+const myFunc = () => {
+  let repeatableFunc = ``;
+  for (let i = 0; i < 3; i++) {
+    repeatableFunc += createBlockCard(ololo.description);
+  }
+  return repeatableFunc;
 };
