@@ -1,13 +1,22 @@
-import {createBlockCardControl} from './blockcardcontrol.js';
 
-
-export const createBlockCard = (description = `lol`, dueDate, tags, color = `black`) => {
+export const createBlockCard = (description, dueDate, tags, color, repeatingDays, isFavorite) => {
   return `
-<article class="card card--${color}">
+<article class="card card--${color} ${Object.keys(repeatingDays).some(day => repeatingDays[day]) ? `card--repeat`: ``}">
             <div class="card__form">
               <div class="card__inner">
                 <div class="card__control">
-                ${createBlockCardControl()}
+                <button type="button" class="card__btn card__btn--edit">
+                    edit
+                  </button>
+                  <button type="button" class="card__btn card__btn--archive">
+                    archive
+                  </button>
+                  <button
+                    type="button"
+                    class="card__btn card__btn--favorites card__btn--disabled"
+                  >
+                    favorites ${isFavorite}
+                  </button>
               </div>
                 <div class="card__color-bar">
                   <svg class="card__color-bar-wave" width="100%" height="10">
@@ -30,10 +39,10 @@ export const createBlockCard = (description = `lol`, dueDate, tags, color = `bla
 
                     <div class="card__hashtag">
                       <div class="card__hashtag-list">
-                        <span class="card__hashtag-inner">
+                        ${Array.from(tags).map((tag) =>`<span class="card__hashtag-inner">
                           <span class="card__hashtag-name">
-                            #${tags}
-                          </span>
+                            #${tag}
+                          </span>`).join(``)}
                         </span>
                       </div>
                     </div>
@@ -45,39 +54,3 @@ export const createBlockCard = (description = `lol`, dueDate, tags, color = `bla
   `;
 };
 
-// data.js
-
-// const task = {
-//   description: [
-//     `Изучить теорию`,
-//     `Сделать домашку`,
-//     `Пройти интенсив на соточку`,
-//   ][Math.floor(Math.random() * 3)],
-
-//   dueDate: Date.now() + 1 + Math.floor(Math.random() * 7) * 24 * 60 * 60 * 1000,
-
-//   tags: new Set([
-//     `cinema`,
-//     `entertainment`,
-//     `myself`,
-//     `cinema`,
-//   ]),
-
-//     repeatingDays: {
-//     'mo': false,
-//     'tu': false,
-//     'we': Boolean(Math.round(Math.random())),
-//     'th': false,
-//     'fr': false,
-//     'sa': false,
-//     'su': false,
-//   },
-
-//     color: [
-//     `black`,
-//     `yellow`,
-//     `blue`,
-//     `green`,
-//     `pink`,
-//   ][Math.floor(Math.random() * 5)],
-// };

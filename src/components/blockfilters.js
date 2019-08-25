@@ -1,3 +1,6 @@
+import {tasksFilters} from './data.js';
+
+
 export const createBlockFilters = () => {
   return `
   <section class="main__filter filter container">
@@ -9,7 +12,7 @@ export const createBlockFilters = () => {
           checked
         />
         <label for="filter__all" class="filter__label">
-          All <span class="filter__all-count">13</span></label
+          All <span class="filter__all-count">${tasksFilters.allTasksCount()}</span></label
         >
         <input
           type="radio"
