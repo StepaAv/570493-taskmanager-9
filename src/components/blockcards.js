@@ -15,7 +15,7 @@ export const createBlockCard = (description, dueDate, tags, color, repeatingDays
                     type="button"
                     class="card__btn card__btn--favorites card__btn--disabled"
                   >
-                    favorites ${isFavorite}
+                    favorites 
                   </button>
               </div>
                 <div class="card__color-bar">

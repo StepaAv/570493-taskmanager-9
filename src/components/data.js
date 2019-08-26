@@ -42,27 +42,50 @@ const createTasks = () => ({
 
 
 // sozdajem mnogo CreateBlockCard s danymi iz createTask
-export const createBlockCards = (amount) => {
+ const createBlockCards = (amount) => {
   let repeateCards = ``;
+  let favoritesBucket = [];
   for (let i = 0; i < amount; i++) {
-  	const tasksContainer = createTasks();
-    repeateCards += createBlockCard(tasksContainer.description, tasksContainer.dueDate, tasksContainer.tags, tasksContainer.color, tasksContainer.repeatingDays, tasksContainer.isFavorite);
-  }
+  	let tasksContainer = createTasks();
+    repeateCards += createBlockCard(tasksContainer.description, tasksContainer.dueDate, 
+      tasksContainer.tags, tasksContainer.color, tasksContainer.repeatingDays, tasksContainer.isFavorite);
+   console.log(tasksContainer);
+   favoritesBucket.push(tasksContainer);
+  }; 
+
+console.log(favoritesBucket)
+
   return repeateCards;
 };
 
+export const blockCards = createBlockCards(CARD_QUANTITY);
+
 // -------------FILTERS-------------
 
-// export const allTasksCount = CARD_QUANTITY;
 
-export const tasksFilters = {
-  allTasksCount() {
-    return CARD_QUANTITY;
-  },
 
-  favoritesTasksCount() {
-    Array.from(createBlockCards(amount));
-  } 
-}
+// const tasksFilters = [
+// {
+//   title: 'filterAll',
+//   get count() {
 
-console.log(createBlockCards(6));
+//   }
+// },
+// {
+//   title: 'filterFavorites',
+//   count: 'blabla'
+// },
+// {
+//   title: 'filterRepeating',
+//   count: 'blabla'
+// },
+// {
+//   title: 'filterTags',
+//   count: 'blabla'
+
+// },
+// {
+//   title: 'filterArchive',
+//   count: 'blabla'
+// }];
+
