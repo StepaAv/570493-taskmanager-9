@@ -40,7 +40,7 @@ const createTasks = () => ({
  isArchive: Boolean(Math.round(Math.random())),
 });
 
-//sozdajem pustoj masiv X
+//1. sozdajem pustoj masiv X
   let favoritesBucket = [];
 // sozdajem mnogo CreateBlockCard s danymi iz createTask
  const createBlockCards = (amount) => {
@@ -49,20 +49,20 @@ const createTasks = () => ({
   	let tasksContainer = createTasks();
     repeateCards += createBlockCard(tasksContainer.description, tasksContainer.dueDate,
       tasksContainer.tags, tasksContainer.color, tasksContainer.repeatingDays, tasksContainer.isFavorite);
-      // zapihivajem v X masiv, argumenty is createTasks()
+      //2. zapihivajem v X masiv, argumenty is createTasks()
       favoritesBucket.push(tasksContainer.color);
   };
   return repeateCards;
 };
-let abc = [];
-abc.push(favoritesBucket);
-let abcd = abc.concat([]);
+console.log(favoritesBucket);
+let arr1 = [];
+arr1.push(favoritesBucket);
+console.log(arr1);
+let arr2 = arr1[0];
+console.log(arr2);
 
-// console.log(favoritesBucket[0]);
-console.log(abc[0]);
-console.log(abcd);
- let ololo = [[1,2,3,4], [5,6,7,8]];
- console.log(ololo);
+
+
 
 
 export const blockCards = createBlockCards(CARD_QUANTITY);
