@@ -59,10 +59,5 @@ export const tasksFilters = {
   allTasksCount() {
     return CARD_QUANTITY;
   },
-
-  favoritesTasksCount() {
-    Array.from(createBlockCards(amount));
-  } 
 }
 
-console.log(createBlockCards(6));
