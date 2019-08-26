@@ -40,24 +40,58 @@ const createTasks = () => ({
  isArchive: Boolean(Math.round(Math.random())),
 });
 
-
+//sozdajem pustoj masiv X
+  let favoritesBucket = [];
 // sozdajem mnogo CreateBlockCard s danymi iz createTask
-export const createBlockCards = (amount) => {
+ const createBlockCards = (amount) => {
   let repeateCards = ``;
   for (let i = 0; i < amount; i++) {
-  	const tasksContainer = createTasks();
-    repeateCards += createBlockCard(tasksContainer.description, tasksContainer.dueDate, tasksContainer.tags, tasksContainer.color, tasksContainer.repeatingDays, tasksContainer.isFavorite);
-  }
+  	let tasksContainer = createTasks();
+    repeateCards += createBlockCard(tasksContainer.description, tasksContainer.dueDate,
+      tasksContainer.tags, tasksContainer.color, tasksContainer.repeatingDays, tasksContainer.isFavorite);
+      // zapihivajem v X masiv, argumenty is createTasks()
+      favoritesBucket.push(tasksContainer.color);
+  };
   return repeateCards;
 };
+let abc = [];
+abc.push(favoritesBucket);
+let abcd = abc.concat([]);
+
+// console.log(favoritesBucket[0]);
+console.log(abc[0]);
+console.log(abcd);
+ let ololo = [[1,2,3,4], [5,6,7,8]];
+ console.log(ololo);
+
+
+export const blockCards = createBlockCards(CARD_QUANTITY);
 
 // -------------FILTERS-------------
 
-// export const allTasksCount = CARD_QUANTITY;
 
-export const tasksFilters = {
-  allTasksCount() {
-    return CARD_QUANTITY;
-  },
-}
+// const tasksFilters = [
+// {
+//   title: 'filterAll',
+//   get count() {
+
+//   }
+// },
+// {
+//   title: 'filterFavorites',
+//   count: 'blabla'
+// },
+// {
+//   title: 'filterRepeating',
+//   count: 'blabla'
+// },
+// {
+//   title: 'filterTags',
+//   count: 'blabla'
+
+// },
+// {
+//   title: 'filterArchive',
+//   count: 'blabla'
+// }];
 
