@@ -1,4 +1,4 @@
-import {tasksFilters} from './data.js';
+// import {tasksFilters} from './data.js';
 
 
 export const createBlockFilters = () => {
