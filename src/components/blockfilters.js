@@ -1,4 +1,4 @@
-// import {tasksFilters} from './data.js';
+import {tasksFiltersQuantity} from './data.js';
 
 
 export const createBlockFilters = () => {
@@ -12,7 +12,7 @@ export const createBlockFilters = () => {
           checked
         />
         <label for="filter__all" class="filter__label">
-          All <span class="filter__all-count"></span></label
+          All <span class="filter__all-count">${tasksFiltersQuantity[0].all} </span></label
         >
         <input
           type="radio"
@@ -41,7 +41,7 @@ export const createBlockFilters = () => {
           name="filter"
         />
         <label for="filter__favorites" class="filter__label"
-          >Favorites <span class="filter__favorites-count">1</span></label
+          >Favorites <span class="filter__favorites-count">${tasksFiltersQuantity[1].favorites}</span></label
         >
         <input
           type="radio"
@@ -50,7 +50,7 @@ export const createBlockFilters = () => {
           name="filter"
         />
         <label for="filter__repeating" class="filter__label"
-          >Repeating <span class="filter__repeating-count">1</span></label
+          >Repeating <span class="filter__repeating-count">${tasksFiltersQuantity[2].repeating}</span></label
         >
         <input
           type="radio"
@@ -59,7 +59,7 @@ export const createBlockFilters = () => {
           name="filter"
         />
         <label for="filter__tags" class="filter__label"
-          >Tags <span class="filter__tags-count">1</span></label
+          >Tags <span class="filter__tags-count">${tasksFiltersQuantity[3].tags}</span></label
         >
         <input
           type="radio"
@@ -68,7 +68,7 @@ export const createBlockFilters = () => {
           name="filter"
         />
         <label for="filter__archive" class="filter__label"
-          >Archive <span class="filter__archive-count">115</span></label
+          >Archive <span class="filter__archive-count">${tasksFiltersQuantity[4].archive}</span></label
         >
       </section>
             <section class="board container">

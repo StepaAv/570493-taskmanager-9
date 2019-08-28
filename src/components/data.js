@@ -1,6 +1,13 @@
 import {createBlockCard} from './blockcards.js';
 
-export const CARD_QUANTITY = 8;
+let cardsQuantity = 7;
+let additionalCards = 8;
+let favoritesBucket = [];
+let tasksContainer = ``;
+let isFavoriteTrueArr = [];
+let isRepeatingTrueArr = [];
+let tagsContainer = ``;
+let isArchivedTrueArr = [];
 
 
 const createTasks = () => ({
@@ -40,10 +47,7 @@ const createTasks = () => ({
   isArchive: Boolean(Math.round(Math.random())),
 });
 
-// 1. sozdajem pustoj masiv X
-let favoritesBucket = [];
-let arr3 = [];
-let tasksContainer = ``;
+
 // sozdajem mnogo CreateBlockCard s danymi iz createTask
 const createBlockCards = (amount) => {
   let repeateCards = ``;
@@ -53,40 +57,69 @@ const createBlockCards = (amount) => {
         tasksContainer.tags, tasksContainer.color, tasksContainer.repeatingDays, tasksContainer.isFavorite);
     // 2. zapihivajem v X masiv, argumenty is createTasks()
     favoritesBucket.push(tasksContainer);
-  };
-  console.log(favoritesBucket);
-  console.log(favoritesBucket[0].isFavorite);
+  }
+  for (let i = 0; i < amount; i++) {
+    // zapihivajem v massiv vse TRUE znachenija 'favorites'
+    if (favoritesBucket[i].isFavorite === true) {
+      isFavoriteTrueArr.push(favoritesBucket[i].isFavorite);
+    }
+    // zapihivajem v massiv vse TRUE znachenija 'repeatingDays.we'
+    if (favoritesBucket[i].repeatingDays.we === true) {
+      isRepeatingTrueArr.push(favoritesBucket[i].repeatingDays.we);
+    }
+    if (favoritesBucket[i].isArchive === true) {
+      isArchivedTrueArr.push(favoritesBucket[i].isArchive);
+    }
+  }
+  tagsContainer = tasksContainer.tags.size;
+
   return repeateCards;
 };
 
+export const blockCards = createBlockCards(cardsQuantity);
 
-export const blockCards = createBlockCards(CARD_QUANTITY);
 
 // -------------FILTERS-------------
 
+export const tasksFiltersQuantity = [
+  {
+    get all() {
+      return cardsQuantity;
+    }
 
-// const tasksFilters = [
-// {
-//   title: 'filterAll',
-//   get count() {
+  },
+  {
+    get favorites() {
+      return isFavoriteTrueArr.length;
+    },
 
-//   }
-// },
-// {
-//   title: 'filterFavorites',
-//   count: 'blabla'
-// },
-// {
-//   title: 'filterRepeating',
-//   count: 'blabla'
-// },
-// {
-//   title: 'filterTags',
-//   count: 'blabla'
+  },
+  {
+    get repeating() {
+      return isRepeatingTrueArr.length;
+    },
 
-// },
-// {
-//   title: 'filterArchive',
-//   count: 'blabla'
-// }];
+  },
+  {
+    get tags() {
+      return tagsContainer;
+    },
+
+
+  },
+  {
+    get archive() {
+      return isArchivedTrueArr.length;
+    },
+
+  }];
+
+// ----------- LOAD MORE BTN ------------
+
+
+export const getMoreCards = () => {
+  cardsQuantity += additionalCards;
+  // loadMoreBtn.style.display = 'none';
+  return cardsQuantity;
+};
 
