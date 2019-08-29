@@ -1,7 +1,6 @@
 import {createBlockCard} from './blockcards.js';
 
-let cardsQuantity = 7;
-let additionalCards = 8;
+let cardsQuantity = 15;
 let favoritesBucket = [];
 let tasksContainer = ``;
 let isFavoriteTrueArr = [];
@@ -49,7 +48,7 @@ const createTasks = () => ({
 
 
 // sozdajem mnogo CreateBlockCard s danymi iz createTask
-const createBlockCards = (amount) => {
+export const createBlockCards = (amount) => {
   let repeateCards = ``;
   for (let i = 0; i < amount; i++) {
   	tasksContainer = createTasks();
@@ -76,8 +75,7 @@ const createBlockCards = (amount) => {
   return repeateCards;
 };
 
-export const blockCards = createBlockCards(cardsQuantity);
-
+export const allCardsBlock = createBlockCards(cardsQuantity);
 
 // -------------FILTERS-------------
 
@@ -114,12 +112,4 @@ export const tasksFiltersQuantity = [
 
   }];
 
-// ----------- LOAD MORE BTN ------------
-
-
-export const getMoreCards = () => {
-  cardsQuantity += additionalCards;
-  // loadMoreBtn.style.display = 'none';
-  return cardsQuantity;
-};
 

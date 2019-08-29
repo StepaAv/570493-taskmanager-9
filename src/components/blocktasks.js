@@ -1,7 +1,7 @@
 import {createBlockFilters} from './blockfilters.js';
 import {createBlockLoadMore} from './blockloadmore.js';
-import {blockCards} from './data.js';
 import {createBlockCardEdit} from './blockcardedit.js';
+import {allCardsBlock} from './data.js';
 
 
 // soberajem razmetku v blok 'board'
@@ -12,7 +12,7 @@ export const createBlockTasks = () => {
         ${createBlockFilters()}
        <div class="board__tasks">
         ${createBlockCardEdit()}
-        ${blockCards}
+        ${allCardsBlock}
        </div>
         ${createBlockLoadMore()}
        </section>`;
