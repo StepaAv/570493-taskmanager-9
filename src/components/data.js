@@ -1,12 +1,7 @@
 import {createBlockCard} from './blockcards.js';
 
-let cardsQuantity = 15;
-let favoritesBucket = [];
-let tasksContainer = ``;
-let isFavoriteTrueArr = [];
-let isRepeatingTrueArr = [];
-let tagsContainer = ``;
-let isArchivedTrueArr = [];
+const maxCardsQuantity = 7;
+const cardsGup = 8;
 
 
 const createTasks = () => ({
@@ -46,68 +41,92 @@ const createTasks = () => ({
   isArchive: Boolean(Math.round(Math.random())),
 });
 
-
-// sozdajem mnogo CreateBlockCard s danymi iz createTask
-export const createBlockCards = (amount) => {
-  let repeateCards = ``;
-  for (let i = 0; i < amount; i++) {
-  	tasksContainer = createTasks();
-    repeateCards += createBlockCard(tasksContainer.description, tasksContainer.dueDate,
-        tasksContainer.tags, tasksContainer.color, tasksContainer.repeatingDays, tasksContainer.isFavorite);
-    // 2. zapihivajem v X masiv, argumenty is createTasks()
-    favoritesBucket.push(tasksContainer);
-  }
-  for (let i = 0; i < amount; i++) {
-    // zapihivajem v massiv vse TRUE znachenija 'favorites'
-    if (favoritesBucket[i].isFavorite === true) {
-      isFavoriteTrueArr.push(favoritesBucket[i].isFavorite);
-    }
-    // zapihivajem v massiv vse TRUE znachenija 'repeatingDays.we'
-    if (favoritesBucket[i].repeatingDays.we === true) {
-      isRepeatingTrueArr.push(favoritesBucket[i].repeatingDays.we);
-    }
-    if (favoritesBucket[i].isArchive === true) {
-      isArchivedTrueArr.push(favoritesBucket[i].isArchive);
-    }
-  }
-  tagsContainer = tasksContainer.tags.size;
-
-  return repeateCards;
+let allData = [];
+const dataArray = {
+  desc: [],
+  date: [],
+  tags: [],
+  color: [],
+  repeat: [],
+  fav: [],
+  arch: [],
 };
 
-export const allCardsBlock = createBlockCards(cardsQuantity);
+const getAllData = (repeat) => {
+  for (let i = 0; i < repeat; i++) {
+    allData.push(createTasks());
+  }
+  for (let i = 0; i < repeat; i++) {
+    dataArray.desc.push(allData[i].description);
+    dataArray.date.push(allData[i].dueDate);
+    dataArray.tags.push(allData[i].tags);
+    dataArray.color.push(allData[i].color);
+    dataArray.repeat.push(allData[i].repeatingDays);
+    dataArray.fav.push(allData[i].isFavorite);
+    dataArray.arch.push(allData[i].isArchive);
+  }
+};
+getAllData(maxCardsQuantity + cardsGup);
+
+export let allCards = ``;
+export const assembleBlockCards = (repeat) => {
+  for (let i = 0; i < repeat; i++) {
+    allCards += createBlockCard(dataArray.desc[i], dataArray.date[i], dataArray.tags[i], dataArray.color[i],
+        dataArray.repeat[i]);
+  }
+};
+
+export const assemlbeMoreCards = () => {
+  for (let i = maxCardsQuantity; i < maxCardsQuantity + cardsGup; i++) {
+    allCards += createBlockCard(dataArray.desc[i], dataArray.date[i], dataArray.tags[i], dataArray.color[i],
+        dataArray.repeat[i]);
+  }
+};
+assembleBlockCards(maxCardsQuantity);
+
+// assemlbeMoreCards();
+
 
 // -------------FILTERS-------------
 
 export const tasksFiltersQuantity = [
   {
     get all() {
-      return cardsQuantity;
+      return maxCardsQuantity + cardsGup;
     }
 
   },
   {
     get favorites() {
-      return isFavoriteTrueArr.length;
+      let result = dataArray.fav.filter((isTrue) => isTrue === true);
+      return result.length;
     },
 
   },
   {
     get repeating() {
-      return isRepeatingTrueArr.length;
+      // eto funkcija prosto kak zaglushka, k nei ishe vrnus'
+      let result = [];
+      for (let i = 0; i < maxCardsQuantity + cardsGup; i++) {
+        if (dataArray.repeat[i].we === true) {
+          result.push(dataArray.repeat[i].we);
+        }
+      }
+      return result.length;
     },
 
   },
   {
     get tags() {
-      return tagsContainer;
+      return dataArray.tags[0].size;
     },
 
 
   },
   {
     get archive() {
-      return isArchivedTrueArr.length;
+      let result = dataArray.arch.filter((isTrue) => isTrue === true);
+      return result.length;
     },
 
   }];
