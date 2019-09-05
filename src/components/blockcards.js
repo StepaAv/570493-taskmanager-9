@@ -1,5 +1,5 @@
 
-export const createBlockCard = (description, dueDate, tags, color, repeatingDays) => {
+export const createBlockCard = ({description, dueDate, tags, color, repeatingDays}) => {
   return `
 <article class="card card--${color} ${Object.keys(repeatingDays).some((day) => repeatingDays[day]) ? `card--repeat` : ``}">
             <div class="card__form">
@@ -39,7 +39,7 @@ export const createBlockCard = (description, dueDate, tags, color, repeatingDays
 
                     <div class="card__hashtag">
                       <div class="card__hashtag-list">
-                        ${Array.from(tags).map((tag) =>`<span class="card__hashtag-inner">
+                        ${Array.from(tags).map((tag) => `<span class="card__hashtag-inner">
                           <span class="card__hashtag-name">
                             #${tag}
                           </span>`).join(``)}

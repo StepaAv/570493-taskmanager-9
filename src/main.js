@@ -1,7 +1,8 @@
 import {createBlockMenu} from './components/blockmenu.js';
 import {createBlockSearch} from './components/blocksearch.js';
 import {createBlockTasks} from './components/blocktasks.js';
-import {assemlbeMoreCards} from './components/data.js';
+import {getMoreCards} from './components/data.js';
+import {cardsHtmlString} from './components/data.js';
 
 const mainControlBlock = document.querySelector(`.main__control`);
 const mainMainBlock = document.querySelector(`.main`);
@@ -14,8 +15,16 @@ renderBlocks(mainControlBlock, createBlockMenu(), `beforeend`);
 renderBlocks(mainMainBlock, createBlockSearch(), `beforeend`);
 renderBlocks(mainMainBlock, createBlockTasks(), `beforeend`);
 
-// ---------- END OF RENDERiNG ------------
-export const loadMoreBtn = document.querySelector(`.load-more`);
+const loadMoreBtn = document.querySelector(`.load-more`);
+const cardsSummonSpot = document.querySelector(`.board__tasks`);
 
-loadMoreBtn.addEventListener(`click`, assemlbeMoreCards);
+renderBlocks(cardsSummonSpot, cardsHtmlString, `beforeend`);
+
+const loadMoreCards = () => {
+  const html = getMoreCards();
+  renderBlocks(cardsSummonSpot, html, `beforeend`);
+  loadMoreBtn.style.display = `none`;
+};
+
+loadMoreBtn.addEventListener(`click`, loadMoreCards);
 

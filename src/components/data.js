@@ -1,7 +1,6 @@
 import {createBlockCard} from './blockcards.js';
 
-const maxCardsQuantity = 7;
-const cardsGup = 8;
+const maxCardsQuantity = 16;
 
 
 const createTasks = () => ({
@@ -41,7 +40,6 @@ const createTasks = () => ({
   isArchive: Boolean(Math.round(Math.random())),
 });
 
-let allData = [];
 const dataArray = {
   desc: [],
   date: [],
@@ -52,47 +50,64 @@ const dataArray = {
   arch: [],
 };
 
+
+// sozdajem masiv s danymi vseh kartochek
+const generateCardsData = (total = 7) => {
+  const cardsData = Array(total).fill().map(createTasks);
+  return cardsData;
+};
+
+// zapihivajem poluchenoje v peremenuju AllCards
+const allCards = generateCardsData(maxCardsQuantity);
+const cardsStart = allCards.slice(0, 7);
+
 const getAllData = (repeat) => {
   for (let i = 0; i < repeat; i++) {
-    allData.push(createTasks());
-  }
-  for (let i = 0; i < repeat; i++) {
-    dataArray.desc.push(allData[i].description);
-    dataArray.date.push(allData[i].dueDate);
-    dataArray.tags.push(allData[i].tags);
-    dataArray.color.push(allData[i].color);
-    dataArray.repeat.push(allData[i].repeatingDays);
-    dataArray.fav.push(allData[i].isFavorite);
-    dataArray.arch.push(allData[i].isArchive);
+    dataArray.desc.push(allCards[i].description);
+    dataArray.date.push(allCards[i].dueDate);
+    dataArray.tags.push(allCards[i].tags);
+    dataArray.color.push(allCards[i].color);
+    dataArray.repeat.push(allCards[i].repeatingDays);
+    dataArray.fav.push(allCards[i].isFavorite);
+    dataArray.arch.push(allCards[i].isArchive);
   }
 };
-getAllData(maxCardsQuantity + cardsGup);
-
-export let allCards = ``;
-export const assembleBlockCards = (repeat) => {
-  for (let i = 0; i < repeat; i++) {
-    allCards += createBlockCard(dataArray.desc[i], dataArray.date[i], dataArray.tags[i], dataArray.color[i],
-        dataArray.repeat[i]);
-  }
+getAllData(maxCardsQuantity);
+// berem chast kartochek iz peremenoj allCards
+const getPart = (array = allCards, start = 0, num = 1) => {
+  return array.slice(start, num);
 };
 
-export const assemlbeMoreCards = () => {
-  for (let i = maxCardsQuantity; i < maxCardsQuantity + cardsGup; i++) {
-    allCards += createBlockCard(dataArray.desc[i], dataArray.date[i], dataArray.tags[i], dataArray.color[i],
-        dataArray.repeat[i]);
-  }
+// peredajem moki v razmetku createBlockCard()
+const generateHtmlCards = (cardsDataArray) => {
+  const cards = cardsDataArray.map((abc) => {
+    const card = createBlockCard(abc);
+    return card;
+  });
+  return cards.join(``);
 };
-assembleBlockCards(maxCardsQuantity);
 
-// assemlbeMoreCards();
+export const cardsHtmlString = generateHtmlCards(cardsStart);
 
+
+let currentPos = 0;
+const GAP = 8;
+export const getMoreCards = () => {
+  currentPos = currentPos + GAP;
+  if (currentPos >= allCards.length - 1) {
+    return ``;
+  }
+  const data = getPart(allCards, currentPos, currentPos + GAP);
+  const htmlString = generateHtmlCards(data);
+  return htmlString;
+};
 
 // -------------FILTERS-------------
 
 export const tasksFiltersQuantity = [
   {
     get all() {
-      return maxCardsQuantity + cardsGup;
+      return maxCardsQuantity;
     }
 
   },
@@ -107,7 +122,7 @@ export const tasksFiltersQuantity = [
     get repeating() {
       // eto funkcija prosto kak zaglushka, k nei ishe vrnus'
       let result = [];
-      for (let i = 0; i < maxCardsQuantity + cardsGup; i++) {
+      for (let i = 0; i < maxCardsQuantity; i++) {
         if (dataArray.repeat[i].we === true) {
           result.push(dataArray.repeat[i].we);
         }
